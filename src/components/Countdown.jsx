@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 
 const Countdown = ({ targetDate }) => {
-  const calculateTime = () => {
+  // Función para calcular el tiempo restante
+  const calculateTime = useCallback(() => {
     const now = new Date();
     const distance = targetDate - now;
 
@@ -11,17 +12,20 @@ const Countdown = ({ targetDate }) => {
       minutes: Math.floor((distance / 1000 / 60) % 60),
       seconds: Math.floor((distance / 1000) % 60),
     };
-  };
+  }, [targetDate]);
 
+  // Estado del countdown
   const [timeLeft, setTimeLeft] = useState(calculateTime());
 
+  // Actualiza cada segundo
   useEffect(() => {
     const interval = setInterval(() => {
       setTimeLeft(calculateTime());
     }, 1000);
     return () => clearInterval(interval);
-  }, []);
+  }, [calculateTime]);
 
+  // Componente para cada círculo
   const Circle = ({ label, value }) => (
     <div className="flex flex-col items-center">
       <div
@@ -40,7 +44,7 @@ const Countdown = ({ targetDate }) => {
   return (
     <section
       id="CountdownSection"
-      className="flex justify-center gap-6 md:gap-12 flex-wrap"
+      className="flex justify-center gap-6 md:gap-12 flex-wrap py-6"
     >
       <Circle label="Días" value={timeLeft.days} />
       <Circle label="Horas" value={timeLeft.hours} />
