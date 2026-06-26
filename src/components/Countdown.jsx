@@ -1,11 +1,9 @@
 import { useEffect, useState, useCallback } from "react";
 
 const Countdown = ({ targetDate }) => {
-  // Función para calcular el tiempo restante
   const calculateTime = useCallback(() => {
     const now = new Date();
     const distance = targetDate - now;
-
     return {
       days: Math.floor(distance / (1000 * 60 * 60 * 24)),
       hours: Math.floor((distance / (1000 * 60 * 60)) % 24),
@@ -14,10 +12,8 @@ const Countdown = ({ targetDate }) => {
     };
   }, [targetDate]);
 
-  // Estado del countdown
   const [timeLeft, setTimeLeft] = useState(calculateTime());
 
-  // Actualiza cada segundo
   useEffect(() => {
     const interval = setInterval(() => {
       setTimeLeft(calculateTime());
@@ -25,26 +21,36 @@ const Countdown = ({ targetDate }) => {
     return () => clearInterval(interval);
   }, [calculateTime]);
 
-  // Componente para cada círculo
   const Circle = ({ label, value }) => (
     <div className="flex flex-col items-center">
       <div
-        className="w-20 h-20 md:w-24 md:h-24 flex items-center justify-center rounded-full text-gray-800 text-2xl md:text-3xl font-bold shadow-lg"
+        className="pulse-gold flex items-center justify-center rounded-full font-serif font-bold"
         style={{
-          background: "linear-gradient(135deg, #fef3c7, #fde68a, #ffb6b9)",
-          border: "2px solid rgba(255,255,255,0.3)",
+          width: "clamp(58px, 15vw, 96px)",
+          height: "clamp(58px, 15vw, 96px)",
+          fontSize: "clamp(1.1rem, 4.5vw, 1.85rem)",
+          background:
+            "linear-gradient(135deg, rgba(255,255,255,0.4), rgba(253,230,138,0.25))",
+          border: "1.5px solid rgba(212,175,55,0.6)",
+          color: "#5C3A00",
         }}
       >
-        {value}
+        {String(value).padStart(2, "0")}
       </div>
-      <span className="mt-2 text-sm md:text-base text-gray-800">{label}</span>
+      <span
+        className="mt-2 font-body italic text-[10px] md:text-xs"
+        style={{ color: "#7D6212", letterSpacing: "0.18em" }}
+      >
+        {label}
+      </span>
     </div>
   );
 
   return (
     <section
       id="CountdownSection"
-      className="flex justify-center gap-6 md:gap-12 flex-wrap py-6"
+      className="flex justify-center flex-wrap py-4"
+      style={{ gap: "clamp(10px, 4vw, 40px)" }}
     >
       <Circle label="Días" value={timeLeft.days} />
       <Circle label="Horas" value={timeLeft.hours} />

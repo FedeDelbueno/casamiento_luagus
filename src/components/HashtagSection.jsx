@@ -4,32 +4,53 @@ import { FaHashtag, FaInstagram } from "react-icons/fa";
 const HashtagSection = () => {
   return (
     <motion.section
-        className="relative py-16 px-6 md:px-20 text-center flex flex-col items-center gap-6 text-gray-800"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 1 }}
-        style={{
-            background: "linear-gradient(120deg, #fce7f0, #ffe0f7, #f8e1ff)"
-        }}
+      className="relative py-12 md:py-20 px-6 md:px-20 text-center flex flex-col items-center gap-5 md:gap-6"
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 1 }}
+      style={{ background: "#FDFAF2" }}
     >
-       {/* Flor pegada al costado izquierdo */}
-        <img
+      {/* Flores decorativas */}
+      <img
         src="/images/lavender.png"
-        className="absolute left-0 top-1/2 -translate-y-1/2 w-40 md:w-48 opacity-50 pointer-events-none scale-x-[-1]"
+        className="absolute left-0 top-1/2 -translate-y-1/2 w-40 md:w-48 opacity-25 pointer-events-none scale-x-[-1]"
         alt="flores decorativas"
-        />
-      {/* Íconos del hashtag */}
-      <div className="flex items-center gap-4 mb-2">
-        <FaHashtag className="text-4xl md:text-5xl text-yellow-400" />
-        <FaInstagram className="text-4xl md:text-5xl text-pink-500" />
+      />
+      <img
+        src="/images/lavender.png"
+        className="absolute right-0 top-1/2 -translate-y-1/2 w-40 md:w-48 opacity-25 pointer-events-none"
+        alt="flores decorativas"
+      />
+
+      {/* Íconos en círculos dorados */}
+      <div className="flex items-center gap-4 mb-2 z-10">
+        <div
+          className="w-12 h-12 rounded-full flex items-center justify-center shadow-md"
+          style={{ background: 'linear-gradient(135deg, #FDE68A, #D4AF37)' }}
+        >
+          <FaHashtag className="text-lg text-amber-900" />
+        </div>
+        <div
+          className="w-12 h-12 rounded-full flex items-center justify-center shadow-md"
+          style={{ background: 'linear-gradient(135deg, #FDE68A, #D4AF37)' }}
+        >
+          <FaInstagram className="text-lg text-amber-900" />
+        </div>
       </div>
 
-      <h2 className="text-3xl md:text-4xl font-extrabold drop-shadow-md">
-        #LUGUS2026
+      <p className="section-label text-amber-600 z-10">— Compartí el momento —</p>
+
+      <h2
+        className="font-serif font-bold tracking-widest z-10"
+        style={{ color: '#7D6212', fontSize: 'clamp(1.6rem, 5vw, 3rem)', letterSpacing: '0.12em' }}
+      >
+        #LUYAGUS2026
       </h2>
 
-      <p className="text-lg md:text-xl max-w-3xl">
+      <div className="w-24 h-px z-10" style={{ background: 'linear-gradient(90deg, transparent, #D4AF37, transparent)' }} />
+
+      <p className="font-body text-lg md:text-xl max-w-2xl text-amber-800 leading-relaxed z-10">
         ¡Preparate para nuestro gran día!<br />
         Etiquetanos en Instagram con nuestro hashtag en tus fotos, reels o videos.
       </p>
@@ -38,12 +59,9 @@ const HashtagSection = () => {
         href="https://www.instagram.com/explore/tags/lugus2026/"
         target="_blank"
         rel="noopener noreferrer"
-        className="px-8 py-3 rounded-full font-semibold text-gray-800 shadow-lg"
-        style={{
-          background: "linear-gradient(90deg, #fef3c7, #fde68a, #ff7a95)",
-        }}
+        className="btn-gold z-10"
         whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
+        whileTap={{ scale: 0.97 }}
       >
         Ver hashtag
       </motion.a>
